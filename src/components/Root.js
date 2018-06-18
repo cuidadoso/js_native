@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 class Root extends Component {
   render() {
-    return <View />;
+    return (
+      <View>
+        <Text>Hello world!!!</Text>
+      </View>
+    );
   }
 }
+
+export default Root;
