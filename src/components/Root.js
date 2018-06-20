@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+
+import SignIn from './auth/SignIn';
+import Hello from './Hello';
 
 class Root extends Component {
   render() {
     return (
       <View>
-        <Text>Hello world!!!</Text>
+        <SignIn />
+        <Hello />
       </View>
     );
   }
