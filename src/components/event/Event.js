@@ -11,23 +11,23 @@ class Event extends Component {
   render() {
     const { event } = this.props;
     return (
-      <View style={style.container}>
-        <Text style={[style.text, style.header]}>{event.title}</Text>
+      <View style={styles.container}>
+        <Text style={[styles.text, styles.header]}>{event.title}</Text>
         <View>
           <Image
             source={{ uri: 'https://picsum.photos/g/200/100' }}
-            style={style.image}
+            style={styles.image}
           />
           <Text>{event.when}</Text>
           <Text>{event.where}</Text>
         </View>
-        <Text style={style.text}>{event.url}</Text>
+        <Text style={styles.text}>{event.url}</Text>
       </View>
     );
   }
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     paddingTop: 15,
     height: '100%',
