@@ -5,6 +5,7 @@ import SignIn from './auth/SignIn';
 import Hello from './Hello';
 import Event from './event/Event';
 import EventList from './event/EventList';
+import { eventList } from '../fixtures';
 
 class Root extends Component {
   render() {
@@ -15,7 +16,8 @@ class Root extends Component {
           source={require('../../assets/images/logo.png')}
           resizeMode={Image.resizeMode.contain}
         />
-        <EventList />
+        {/*<EventList events={eventList} />*/}
+        <Event />
       </View>
     );
   }
