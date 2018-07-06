@@ -1,16 +1,16 @@
-import { StackNavigator, createStackNavigator } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 
 import { AuthScreen, EventScreen, EventListScreen } from './screens';
 
-const AppNavigator = createStackNavigator({
-  eventList: {
-    screen: EventListScreen
-  },
+const AppNavigator = StackNavigator({
   auth: {
     screen: AuthScreen
   },
   event: {
     screen: EventScreen
+  },
+  eventList: {
+    screen: EventListScreen
   }
 });
 

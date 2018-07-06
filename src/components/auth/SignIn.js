@@ -7,6 +7,7 @@ import {
   Platform
 } from 'react-native';
 import { observer, inject } from 'mobx-react';
+import { NavigationActions } from 'react-navigation';
 import firebase from 'firebase';
 
 @inject('userStore')
@@ -23,7 +24,11 @@ class SignIn extends Component {
       .signInWithEmailAndPassword(userStore.email, userStore.password)
       .then((user) => {
         userStore.user = user;
-        this.props.navigation.navigate('eventList');
+        const action = NavigationActions.reset({
+          index: 0,
+          actions: [NavigationActions.navigate({ routeName: 'eventList' })]
+        });
+        this.props.navigationStore.dispatch(action);
       });
     console.log('---', 'sign in');
   };
