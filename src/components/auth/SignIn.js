@@ -6,42 +6,42 @@ import {
   TouchableOpacity,
   Platform
 } from 'react-native';
+import { observer } from 'mobx-react';
+import firebase from 'firebase';
 
+import userStore from '../../stores/user';
+
+@observer
 class SignIn extends Component {
-  state = {
-    email: '',
-    password: ''
-  };
+  setEmail = (email) => (userStore.email = email);
 
-  setEmail = (email) =>
-    this.setState({
-      email
-    });
-
-  setPassword = (password) =>
-    this.setState({
-      password
-    });
+  setPassword = (password) => (userStore.password = password);
 
   signIn = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(userStore.email, userStore.password)
+      .then((user) => {
+        userStore.user = user;
+        this.props.navigation.navigate('eventList');
+      });
     console.log('---', 'sign in');
   };
 
   render() {
-    const { email, password } = this.state;
     return (
       <View>
-        <Text style={styles.header}>Please SIgn In</Text>
+        <Text style={styles.header}>Please Sign In</Text>
         <Text>Email:</Text>
         <TextInput
-          value={email}
+          value={userStore.email}
           onChangeText={this.setEmail}
           style={styles.input}
           keyboardType="email-address"
         />
         <Text>Password:</Text>
         <TextInput
-          value={password}
+          value={userStore.password}
           onChangeText={this.setPassword}
           style={styles.input}
           secureTextEntry
@@ -69,4 +69,5 @@ const styles = {
     })
   }
 };
+
 export default SignIn;
