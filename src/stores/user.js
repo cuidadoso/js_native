@@ -7,4 +7,4 @@ class User {
   @observable user: null;
 }
 
-export default new User();
+export default User;

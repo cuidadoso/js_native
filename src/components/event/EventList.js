@@ -3,13 +3,8 @@ import { Text, StyleSheet, SectionList, TouchableOpacity } from 'react-native';
 import groupBy from 'lodash/groupBy';
 
 import EventCard from './EventCard';
-import { eventList } from '../../fixtures';
 
 class EventList extends Component {
-  static defaultProps = {
-    events: eventList
-  };
-
   render() {
     const { onEventPress, events } = this.props;
     const grouped = groupBy(events, (event) => event.title.charAt(0));

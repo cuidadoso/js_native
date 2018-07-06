@@ -6,18 +6,18 @@ import {
   TouchableOpacity,
   Platform
 } from 'react-native';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import firebase from 'firebase';
 
-import userStore from '../../stores/user';
-
+@inject('userStore')
 @observer
 class SignIn extends Component {
-  setEmail = (email) => (userStore.email = email);
+  setEmail = (email) => (this.props.userStore.email = email);
 
-  setPassword = (password) => (userStore.password = password);
+  setPassword = (password) => (this.props.userStore.password = password);
 
   signIn = () => {
+    const { userStore } = this.props;
     firebase
       .auth()
       .signInWithEmailAndPassword(userStore.email, userStore.password)
@@ -29,6 +29,7 @@ class SignIn extends Component {
   };
 
   render() {
+    const { userStore } = this.props;
     return (
       <View>
         <Text style={styles.header}>Please Sign In</Text>
