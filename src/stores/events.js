@@ -16,7 +16,7 @@ class Events extends BasicStore {
   }
 
   @computed
-  get length() {
+  get size() {
     return Object.keys(this.entities).length;
   }
 

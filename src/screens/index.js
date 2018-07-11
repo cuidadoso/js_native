@@ -1,5 +1,6 @@
 import AuthScreen from './Auth';
 import EventScreen from './events/Event';
 import EventListScreen from './events/EventList';
+import PeopleListScreen from './people/PeopleList';
 
-export { AuthScreen, EventScreen, EventListScreen };
+export { AuthScreen, EventScreen, EventListScreen, PeopleListScreen };

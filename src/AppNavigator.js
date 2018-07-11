@@ -1,6 +1,20 @@
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator } from 'react-navigation';
 
-import { AuthScreen, EventScreen, EventListScreen } from './screens';
+import {
+  AuthScreen,
+  EventScreen,
+  EventListScreen,
+  PeopleListScreen
+} from './screens';
+
+const ListsNavigator = TabNavigator({
+  events: {
+    screen: EventListScreen
+  },
+  people: {
+    screen: PeopleListScreen
+  }
+});
 
 const AppNavigator = StackNavigator({
   auth: {
@@ -9,8 +23,8 @@ const AppNavigator = StackNavigator({
   event: {
     screen: EventScreen
   },
-  eventList: {
-    screen: EventListScreen
+  lists: {
+    screen: ListsNavigator
   }
 });
 
