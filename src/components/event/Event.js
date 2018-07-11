@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, Button } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Button,
+  TouchableOpacity
+} from 'react-native';
 import { observer } from 'mobx-react';
+import { web } from 'react-native-communications';
 
 import ConfirmModal from '../common/ConfirmModal';
 import { eventList } from '../../fixtures';
@@ -29,6 +37,10 @@ class Event extends Component {
   cancelDelete = () => this.setState({ confirmModal: false });
   deleteEvent = () => {};
 
+  goToURL = () => {
+    web(this.props.event.url);
+  };
+
   render() {
     const { event } = this.props;
     return (
@@ -42,8 +54,9 @@ class Event extends Component {
           <Text>{event.when}</Text>
           <Text>{event.where}</Text>
         </View>
-        <Text style={styles.text}>{event.url}</Text>
-
+        <TouchableOpacity onPress={this.goToURL}>
+          <Text style={styles.text}>{event.url}</Text>
+        </TouchableOpacity>
         <View style={styles.button}>
           <Button
             onPress={this.handleDelete}

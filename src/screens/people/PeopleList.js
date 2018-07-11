@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import { text, email } from 'react-native-communications';
 
 import PeopleList from '../../components/people/PeopleList';
 import { inject, observer } from 'mobx-react';
@@ -12,7 +13,14 @@ class PeopleListScreen extends Component {
   };
 
   handlePersonPress = (uid) => {
-    this.props.peopleStore.entities[uid].email = 'Same changed EMAIL';
+    /*email(
+      'alexander_s@front.ru',
+      null,
+      null,
+      'subject',
+      this.props.peopleStore.entities[uid].email
+    );*/
+    text('+123456789', 'event notification');
   };
 
   getLoader() {
