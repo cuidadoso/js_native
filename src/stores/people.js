@@ -1,7 +1,8 @@
-import EntitiesStore, { subscribeHelper } from './EntitiesStore';
 import { computed, action } from 'mobx';
 import groupBy from 'lodash/groupBy';
 import firebase from 'firebase';
+
+import EntitiesStore, { subscribeHelper } from './EntitiesStore';
 
 class PeopleStore extends EntitiesStore {
   @computed

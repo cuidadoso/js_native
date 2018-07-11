@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, Button } from 'react-native';
+import { observer } from 'mobx-react';
 
 import ConfirmModal from '../common/ConfirmModal';
 import { eventList } from '../../fixtures';
 
+@observer
 class Event extends Component {
   state = {
     confirmModal: false
@@ -14,9 +16,10 @@ class Event extends Component {
   };
 
   handleDelete = () => {
-    this.setState({
+    this.props.event.title = 'Same new TITLE';
+    /*this.setState({
       confirmModal: true
-    });
+    });*/
   };
 
   confirmDelete = () => {
