@@ -1,14 +1,46 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { MapView } from 'expo';
+import { Text, StyleSheet } from 'react-native';
+import { MapView, Permissions, Location } from 'expo';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
 
+@observer
 class EventMapScreen extends Component {
   static navigationOptions = {
     title: 'Map'
   };
 
+  @observable errorMessage: null;
+  @observable permissionAsked: false;
+  @observable location: null;
+
+  async componentDidMount() {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
+    this.permissionAsked = true;
+    if (status !== 'granted') this.errorMessage = 'permission denied';
+
+    this.location = await Location.getCurrentPositionAsync();
+  }
+
   render() {
-    return <MapView style={styles.map} />;
+    if (!this.permissionAsked) return <Text>No permission yet</Text>;
+    if (this.errorMessage) return <Text>{this.errorMessage}</Text>;
+
+    const region = this.location && {
+      ...this.location.coords,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421
+    };
+
+    const marker = this.location && (
+      <MapView.Marker coordinate={this.location.coords} title="event place" />
+    );
+
+    return (
+      <MapView style={styles.map} region={region}>
+        {marker}
+      </MapView>
+    );
   }
 }
 

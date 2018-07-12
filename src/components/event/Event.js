@@ -13,8 +13,8 @@ import { web } from 'react-native-communications';
 import ConfirmModal from '../common/ConfirmModal';
 import { eventList } from '../../fixtures';
 
-@inject('navigationStore')
 @observer
+@inject('navigationStore')
 class Event extends Component {
   state = {
     confirmModal: false
