@@ -7,12 +7,13 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import { web } from 'react-native-communications';
 
 import ConfirmModal from '../common/ConfirmModal';
 import { eventList } from '../../fixtures';
 
+@inject('navigationStore')
 @observer
 class Event extends Component {
   state = {
@@ -41,6 +42,10 @@ class Event extends Component {
     web(this.props.event.url);
   };
 
+  goToMap = () => {
+    this.props.navigationStore.goTo('eventMap', { uid: this.props.event.uid });
+  };
+
   render() {
     const { event } = this.props;
     return (
@@ -63,6 +68,7 @@ class Event extends Component {
             title="Delete Event"
             color="#F55"
           />
+          <Button onPress={this.goToMap} title="Show on map" />
         </View>
         <ConfirmModal
           visible={this.state.confirmModal}

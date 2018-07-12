@@ -4,7 +4,8 @@ import {
   AuthScreen,
   EventScreen,
   EventListScreen,
-  PeopleListScreen
+  PeopleListScreen,
+  EventMapScreen
 } from './screens';
 
 const ListsNavigator = TabNavigator({
@@ -25,6 +26,9 @@ const AppNavigator = StackNavigator({
   },
   lists: {
     screen: ListsNavigator
+  },
+  eventMap: {
+    screen: EventMapScreen
   }
 });
 
