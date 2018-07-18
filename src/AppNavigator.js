@@ -5,7 +5,8 @@ import {
   EventScreen,
   EventListScreen,
   PeopleListScreen,
-  EventMapScreen
+  EventMapScreen,
+  PersonPhotoScreen
 } from './screens';
 
 const ListsNavigator = TabNavigator({
@@ -29,6 +30,9 @@ const AppNavigator = StackNavigator({
   },
   eventMap: {
     screen: EventMapScreen
+  },
+  personPhoto: {
+    screen: PersonPhotoScreen
   }
 });
 

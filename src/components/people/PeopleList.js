@@ -22,7 +22,7 @@ class PeopleList extends Component {
   }
 
   render() {
-    const { onPersonPress, peopleStore } = this.props;
+    const { onPersonPress, onLongPress, peopleStore } = this.props;
     if (peopleStore.loading) return <ActivityIndicator size="large" />;
 
     return (
@@ -32,7 +32,10 @@ class PeopleList extends Component {
           <Text style={styles.header}>{section.title}</Text>
         )}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={onPersonPress.bind(null, item.key)}>
+          <TouchableOpacity
+            onPress={onPersonPress.bind(null, item.key)}
+            onLongPress={onLongPress.bind(null, item.key)}
+          >
             <PersonCard person={item.person} />
           </TouchableOpacity>
         )}

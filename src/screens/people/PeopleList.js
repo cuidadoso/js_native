@@ -23,6 +23,10 @@ class PeopleListScreen extends Component {
     text('+123456789', 'event notification');
   };
 
+  handleLongPress = (uid) => {
+    this.props.navigation.navigate('personPhoto', { uid });
+  };
+
   getLoader() {
     return (
       <View>
@@ -41,7 +45,7 @@ class PeopleListScreen extends Component {
     return (
       <PeopleList
         onPersonPress={this.handlePersonPress}
-        events={peopleStore.list}
+        onLongPress={this.handleLongPress}
       />
     );
   }
